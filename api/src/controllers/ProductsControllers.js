@@ -46,8 +46,7 @@ class ProductsControllers {
             ])
             .where("nome_produto", nome_produto)
         
-        console.log(products)
-        return response.json(products)
+        return response.send({products})
     }
     
                 

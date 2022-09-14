@@ -10,12 +10,10 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 20px;
-
     >table {
         width: 100%;
         border-collapse: collapse;
         
-
         th {
             background-color: ${({theme}) => theme.COLORS.GRAY_100};
             text-align: center;
@@ -31,14 +29,68 @@ export const Container = styled.div`
         th:nth-child(4) {
             border: none;
         }
+
+        button {
+            grid-area: button;
+            
+
+            background-color: ${({theme}) => theme.COLORS.ORANGE};
+            color: ${({theme}) => theme.COLORS.BACKGROUND_800};
+
+            font-size: 18px;
+
+            height: 24px;
+            padding: 0 8px;
+
+            border: 0;
+            border-radius: 4px;
+        }
     }
     >table * {
-        font-size: 16px;
+        font-size: 20px;
         color: black;
         border: 1px solid;
     }
 
     
+    >label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        width: 100%;
+
+        input {
+            height: 40px;
+            width: 75%;
+            font-size: 16px;
+    
+            padding: 8px;
+    
+            color: ${({theme}) => theme.COLORS.WHITE};
+            background-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
+    
+            border: 0;
+            border-radius: 8px;
+        }
+        button {
+            grid-area: button;
+            width: 25%;
+
+            background-color: ${({theme}) => theme.COLORS.ORANGE};
+            color: ${({theme}) => theme.COLORS.BACKGROUND_800};
+
+            font-size: 20px;
+
+            height: 40px;
+            padding: 0 16px;
+
+            border: 0;
+            border-radius: 10px;
+        }
+    }
+
 `
 
 export const Form = styled.form`

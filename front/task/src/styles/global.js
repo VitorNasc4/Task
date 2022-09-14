@@ -15,4 +15,12 @@ export default createGlobalStyle`
     a {
         text-decoration: none;
     }
+
+    button {
+        cursor: pointer;
+    }
+
+    button:hover {
+        filter: brightness(1.2);
+    }
 `
