@@ -35,14 +35,15 @@ export function App() {
       return alert("Preencha todos os campos")
     }
     
-    const checkProductExist = await api.get(`/?nome_produto=${search}`)
+    const response = await api.get(`/?nome_produto=${nome_produto}`)
+    
+    console.log(response.data.products.length)
 
-    if(checkProductExist) {
-      alert("Já existe um produto com esse nome")
+    if (response.data.products.length !== 0) {
+      return alert("Produto com esse nome já cadastrado")
     } else {
       sendToDatabase(nome_produto, quantidade, valor)
     }
-    
 
   }
 
