@@ -11,6 +11,9 @@ export function App() {
   const [search, setSearch] = useState("")
 
   const [product, setProduct] = useState({})
+  const [nome_produtoSearch, setNomeSearch] = useState("")
+  const [quantidadeSearch, setQuantidadeSearch] = useState("")
+  const [valorSearch, setValorSearch] = useState("")
   
   async function sendToDatabase(nome_produto, quantidade, valor) {
     await api.post("/",{nome_produto, quantidade, valor})
@@ -26,13 +29,19 @@ export function App() {
       })
   }
 
-  function handleRegister() {
+  async function handleRegister() {
 
     if (!nome_produto || !quantidade || !valor) {
       return alert("Preencha todos os campos")
     }
     
-    sendToDatabase(nome_produto, quantidade, valor)
+    const checkProductExist = await api.get(`/?nome_produto=${search}`)
+
+    if(checkProductExist) {
+      alert("Já existe um produto com esse nome")
+    } else {
+      sendToDatabase(nome_produto, quantidade, valor)
+    }
     
 
   }
@@ -48,29 +57,30 @@ export function App() {
       return alert("Produto não encontrado")
     } else {
       setProduct(response.data.products[0])
-      setNome(product.nome_produto)
-      setQuantidade(product.quantidade)
-      setValor(product.valor)
+      setNomeSearch(product.nome_produto)
+      setQuantidadeSearch(product.quantidade)
+      setValorSearch(product.valor)
+
     }
   }
 
   function handleAdd() {
-    if (quantidade == "") {
+    if (quantidadeSearch == "") {
       return alert("Preencha o campo de busca")
     }
-    setQuantidade(quantidade + 1)
+    setQuantidadeSearch(quantidadeSearch + 1)
   }
   
   function handleRemove() {
-    if (quantidade == "") {
+    if (quantidadeSearch == "") {
       return alert("Preencha o campo de busca")
     }
-    setQuantidade(quantidade - 1)
+    setQuantidadeSearch(quantidadeSearch - 1)
   }
 
   useEffect(() => {
     async function ChangeQuantidade() {
-      await api.put("/",{nome_produto, quantidade})
+      await api.put("/",{nome_produto: nome_produtoSearch, quantidade: quantidadeSearch})
       .catch(error => {
         if (error.response) {
           alert(error.response.data.message)
@@ -80,7 +90,7 @@ export function App() {
       })
     }
     ChangeQuantidade()
- }, [quantidade])
+ }, [quantidadeSearch])
 
   return (
     <Container>
@@ -131,9 +141,9 @@ export function App() {
         </thead>
         <tbody>
           <tr>
-            <td>{nome_produto}</td>
-            <td>{quantidade}</td>
-            <td>{Number(valor).toFixed(2)}</td>
+            <td>{nome_produtoSearch}</td>
+            <td>{quantidadeSearch}</td>
+            <td>{Number(valorSearch).toFixed(2)}</td>
             <td>
               <button onClick={handleAdd}>Adicionar</button> - <button onClick={handleRemove}>Remover</button>
             </td>
