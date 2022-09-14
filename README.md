@@ -25,6 +25,7 @@ An app to register your product and search it on database
 1) Open the api directory on VScode and run on the terminal: npm run dev
 2) Do the same with task directory (inside front directory)
 3) Open the link that will appear on terminal console
+4) Double click on "Buscar" 
 
 
 ## Demonstration
