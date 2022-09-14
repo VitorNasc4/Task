@@ -27,6 +27,11 @@ An app to register your product and search it on database
 3) Open the link that will appear on terminal console
 
 
+## Demonstration
+
+![demo](https://user-images.githubusercontent.com/101666833/190251342-89831edf-cb0f-449e-ab69-301944f0a6e6.gif)
+
+
 ## References
 
  - [Node.js Documentation](https://nodejs.org/en/docs/)
